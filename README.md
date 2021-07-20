@@ -50,3 +50,56 @@ Ela usa a mesma chave para cifrar e decifrar os dados, como na vida real, onde u
 No certificado, vem a chave pública para o cliente utilizar, certo? E o servidor continua na posse da chave privada, ok? Isso é seguro, mas lento e por isso o cliente gera uma chave simétrica ao vivo. Uma chave só para ele e o servidor com o qual está se comunicando naquele momento! Essa chave exclusiva (e simétrica) é então enviada para o servidor utilizando a criptografia assimétrica (chave privada e pública) e então é utilizada para o restante da comunicação.
 
 Então, HTTPS começa com criptografia assimétrica para depois mudar para criptografia simétrica. Essa chave simétrica será gerada no início da comunicação e será reaproveitada nas requisições seguintes. Bem-vindo ao mundo fantástico do HTTPS.
+
+# Endereços
+
+Os endereços podem ser dividos em categorias de assuntos que envolvem <b>domínio, subdomínio, ips e DNS </b>, basicamente são informações que precisamos saber para acessar um determinado site em um
+servidor, vamos entender como funciona: 
+
+O domínio é a principal url do site por exemplo: www.alura.com.br, a abreviação www siginfica <b> world wide web</b> a maioria dos sites hoje em dia não utiliza isso é algo legado.
+Se você analizar o domínio da direita pra esquerda vai ver que o <b>br</b> está no Top domain level, e o -> <b>com e alura</b> são subdomínios desse domínio principal
+
+Existem outros tipos de subdomínios como o do google que usam para o gmail e o drive deles: <b> mail.google.com e drive.google.com </b>
+
+Endereço de IP é uma serie de caracteres que é a conversão desse domínio, que é transformada pelo DNS <b> (Domain Name System). </b> então quando digitamos www.google.com
+O nosso DNS procura no seu banco de dados o seu IP e acessa algo do tipo assim: 192.203.232.332 por baixo dos panos.
+
+Existe mais algo interessante que são as portas, imagine que seu servidor é uma casa e você precisa dar acesso ao seu usuário, então normalmente a porta de bem vinda do http é a 80.
+se você for entrar em qualquer site comum com a porta: <b>wwww.google.com.br:80</b> vai ver que vai entrar tranquilamente, já para o https é usado a partoda 443, você que configura qual porta
+a sua aplicação vai ficar disponível para os usuários, além disso existem outros protocolos que definem a sua porta padrão como por exemplo o FTP que usa 21 ou SSH que usa 22.
+
+Por último e não menos importante vamos falar sobre caminhos e recursos, são basicamentes descrições para chegar ao um determinado ponto na url por exemplo:
+www.alura.com.br/noje-js-curso -> <b>node-js-curso</b> é um recurso, mas podemos ter casos de  caminhos com recursos como
+wwww.alura.com.br/cursos/front-end -> <b> cursos é o caminho e front-end é o recurso final</b>
+
+![Ilustração protocolo](https://s3.amazonaws.com/caelum-online-public/http/http-url.png)
+
+
+# URL VS URI
+
+<b>URI (Uniform Resource Identifier) e URL(Uniform Resource Locator) </b> É basicamente a definição para os endereços que digitamos, a maior diferença é que toda URI é uma URI, mas nem toda 
+URL, é uma URI, já que URI pode determinar uma URL com um recurso específico.
+E agora existe mais um chamado: <b> URN (Uniform Resource Name). </b> que é um padrão mais claro e bem feito
+
+![Ilustração protocolo](https://s3.amazonaws.com/caelum-online-public/http/http-uri-urn-url.png)
+
+# Sessões E Stateless e Cookies
+
+Sessões: é o tempo usado pelo o cliente em uma determinada aplicação
+
+Toda requisição HTTP é stateless ou seja elas são independentes e contém todos os dados necessários de forma que não tem como ver o que tinha na passada por outra requisição.
+
+Quando efetuamos o login em uma aplicação, enviamos nossos dados secretos, o servidor do outro lado irá gerar uma senha um código aleatório que dura alguns momentos, e ele ficará sendo usado
+em nossas próximas requisições evitando que a gente fique passando dados sensíveis em cada requisição que precisa de password e login, segue um exemplo abaixo.
+
+![Ilustração protocolo](https://s3.amazonaws.com/caelum-online-public/http/alura-req-res-cookie.png)
+
+Esses códigos são guardados em nossos <b> COOKIES </b> basicamente é um espaço no navegador que podemos armazenar algumas informações e ficar reutilizando de maneira segura nas nossas páginas de acesso, exemplo de como são guardados os cookies logo abaixo:
+
+![Ilustração protocolo](https://s3.amazonaws.com/caelum-online-public/http/alura-cookie-navegador.png)
+
+
+O HTTP usa sessões para salvar informações do usuário
+Sessões só são possíveis por uso de Cookies
+Cookies são pequenos arquivos que guardam informações no navegador
+O HTTP é stateless, não mantem estado.
