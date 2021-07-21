@@ -98,8 +98,29 @@ Esses códigos são guardados em nossos <b> COOKIES </b> basicamente é um espa�
 
 ![Ilustração protocolo](https://s3.amazonaws.com/caelum-online-public/http/alura-cookie-navegador.png)
 
-
 O HTTP usa sessões para salvar informações do usuário
 Sessões só são possíveis por uso de Cookies
 Cookies são pequenos arquivos que guardam informações no navegador
 O HTTP é stateless, não mantem estado.
+
+# Status HTTP
+
+Por padrão os Status HTTP possuem tipos de respostas diferentes iniciais para comportamentos mapeados
+
+![Ilustração protocolo](https://s3.amazonaws.com/caelum-online-public/http/classe-http-2.png)
+
+Sempre que uma requisição receber 301 como status que significa: <b> Moved Permanently </b>, esse response precisa vir com uma <b> Location </b> justamente com o novo endereço para ser redirecionado
+para a nova página.
+
+# Parâmetros na requisição
+
+A forma de passar parâmetros por uma requisição é bem simples, eles se chamam de Query Params, eles são enviados pela URL, basta adicionar o <b> ? </b> dps de todo recurso da url
+e juntar com o que você deseja enviar, no exemplo abaixo enviamos o parâmetro novoParam passando o valor: nodeJs
+
+https://www.bb.com.br/curso?novoParam=nodeJs
+
+Caso você queira enviar mais parâmetros só precisa adicionar o <b> & </b> da seguinte forma:
+
+https://www.bb.com.br/curso?novoParam=nodeJs&data=20-02-03
+
+Outro ponto interessante é  que não usamos esse método para enviar dados seguros como senhas ou informações secretas, para isso enviamos atravé do método <b>POST </b> pelo body ( CORPO ) da requisição.
