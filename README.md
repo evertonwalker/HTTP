@@ -124,3 +124,44 @@ Caso você queira enviar mais parâmetros só precisa adicionar o <b> & </b> da 
 https://www.bb.com.br/curso?novoParam=nodeJs&data=20-02-03
 
 Outro ponto interessante é  que não usamos esse método para enviar dados seguros como senhas ou informações secretas, para isso enviamos atravé do método <b>POST </b> pelo body ( CORPO ) da requisição.
+
+# Rest 
+
+Logo podemos perceber que o padrão usado pela equipe do webservice define que uma requisição web tem três tipos de componentes importantes: recursos (URI), operações (GET, POST, PUT, DELETE/...) 
+e representação de dados(XML, JSON, ...).
+
+Esses três componentes em conjuntos seguindo algumas práticas são a base para o modelo arquitetural <b>REST(Representational State Transfer)</b> ou em português <b>Transferência de Estado Representacional.</b>
+
+![Ilustração protocolo](https://s3.amazonaws.com/caelum-online-public/http/images/08/imagem2-cap8-rest-http.png)
+
+Concluindo nossas URIs devem representar recursos, as operações no recurso devem ser indicadas pelos métodos HTTP e podemos falar qual é o formato em que conversamos
+com o servidor com o <b>Content-Type</b> e <b>Accept</b> que são cabeçalhos do HTTP.
+
+# HTTP2 
+
+Novo procotoco que chegou para melhorar a web com performance e algumas boas práticas como:
+
+- Comprimir os headers para serem enviados de maneiras binárias / criptografas e mais seguras
+- Comprimir o recebimento dos dados por padrão através do GZIP
+- Melhor manipulação da maneira que os cabeçalhos são enviados com o <b> Headers stateful </b> de forma que se for enviar algo igual da requisição anterior, ele mantenha evitando o usuário repetir esses dados, em cada requisição.
+
+Antigamente os dados de uma requisição eram feitas da seguinte forma, primeiro você carregava o <b>index.html</b> de uma deterinada página e dado a necessidade de outros arquivos
+e informações como <br> .css, .js, imagens, etc </br> eram carregados no servidor na próxima requisição dessa forma: 
+
+![Ilustração protocolo](https://s3.amazonaws.com/caelum-online-public/http/images/08/mais-requisicoes.png)
+
+# Server Push
+
+Isso deixava a página um pouco mais lenta, agora com o HTTP/2 chegou o novo recurso chamado <b>Server Push </b>, ele já identifica os arquivos que serão necessário para a página inicial, possibilitando assim
+uma melhor experiência para o usuário, pois não vai ter a necessidade de esperar tudo carregar, porque já vai vir carregado.
+
+![Ilustração protocolo](https://s3.amazonaws.com/caelum-online-public/http/http2-push.png)
+# Multiplexing
+
+Cada requisição que fazemos por baixo dos panos criamos um fluxo TCP na camada de infraesturura, ou seja alocamos um recurso do servidor, para diminuir esses recursos solicitados, hoje os browsers já passam informações
+de  KeepAlive para manter esse TPC por um tempo maior sem perder e ficar abrindo novamente, então podemos manter 4 a 8 recursos por exemplo de uma página.
+
+Porém isso ainda traz um gargalo e para resolver isso o  HTTP/2 chegou com o novo recurso chamado <b>Multiplexing</b> que é o fato de fazer várias requisições de maneiras assíncronas sem depender diretamente uma da outra,
+então isso melhorou bastante a performance das aplicações, segue uma forma visual de como isto é feito nos dias atuais:
+
+![Ilustração protocolo](https://s3.amazonaws.com/caelum-online-public/http/http2-push.png)
